@@ -28,13 +28,11 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == NewPlayer.Instance.gameObject)
         {
-            NewPlayer player = collision.gameObject.GetComponent<NewPlayer>();
-
-            if (player.inventory.ContainsKey(requiredKeyName.ToString()))
+            if (NewPlayer.Instance.inventory.ContainsKey(requiredKeyName.ToString()))
             {
-                player.RemoveInventoryItem(requiredKeyName.ToString());
+                NewPlayer.Instance.RemoveInventoryItem(requiredKeyName.ToString());
                 openGate = true;
             }
         }

@@ -52,10 +52,9 @@ public class Enemy : PhysicsObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == NewPlayer.Instance.gameObject)
         {
-            NewPlayer player = collision.gameObject.GetComponent<NewPlayer>();
-            player.ChangeHealthValue(-attackPower);
+            NewPlayer.Instance.ChangeHealthValue(-attackPower);
         }
     }
 

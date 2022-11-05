@@ -25,20 +25,18 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == NewPlayer.Instance.gameObject)
         {
-            NewPlayer player = collision.gameObject.GetComponent<NewPlayer>();
-
             switch (itemType)
             {
                 case ItemType.Coin:
-                    player.CoinCollected();
+                    NewPlayer.Instance.CoinCollected();
                     break;
                 case ItemType.Health:
-                    player.ChangeHealthValue(10);
+                    NewPlayer.Instance.ChangeHealthValue(10);
                     break;
                 case ItemType.InventoryItem:
-                    player.AddInventoryItem(inventoryItemName.ToString(), inventoryItemSprite);
+                    NewPlayer.Instance.AddInventoryItem(inventoryItemName.ToString(), inventoryItemSprite);
                     break;
             }
 

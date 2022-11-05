@@ -24,6 +24,17 @@ public class NewPlayer : PhysicsObject
     int maxHealth = 100;
     Vector2 healthBarOrigSize;
 
+    // singleton because of the singleplayer mode
+    private static NewPlayer instance;
+    public static NewPlayer Instance
+    {
+        get
+        {
+            if (instance == null) instance = FindObjectOfType<NewPlayer>();
+            return instance;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
