@@ -35,7 +35,7 @@ public class Collectable : MonoBehaviour
                     player.CoinCollected();
                     break;
                 case ItemType.Health:
-                    player.AddHealthValue(10);
+                    player.ChangeHealthValue(10);
                     break;
                 case ItemType.InventoryItem:
                     player.AddInventoryItem(inventoryItemName.ToString(), inventoryItemSprite);

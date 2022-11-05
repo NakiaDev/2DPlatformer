@@ -10,8 +10,8 @@ public class NewPlayer : PhysicsObject
     [SerializeField] float jumpPower = 10;
     [SerializeField] int coinsCollected;
     [SerializeField] int health;
-    int maxHealth = 100;
-    Vector2 healthBarOrigSize;
+    [SerializeField] float attackDuration = .1f;
+    public int attackPower = 25;
 
     [Space(10)]
     public TextMeshProUGUI coinsText;
@@ -19,6 +19,10 @@ public class NewPlayer : PhysicsObject
     public Dictionary<string, Sprite> inventory = new();
     public Image inventoryItemImage;
     public Sprite inventoryItemBlank;
+    [SerializeField] GameObject attackBox;
+
+    int maxHealth = 100;
+    Vector2 healthBarOrigSize;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,28 @@ public class NewPlayer : PhysicsObject
         {
             velocity.y = jumpPower;
         }
+
+        if (targetVelocity.x < 0)
+            transform.localScale = new Vector2(-1, 1);
+        else if (targetVelocity.x > 0)
+            transform.localScale = new Vector2(1, 1);
+
+        HandleAttack();
+    }
+
+    public void HandleAttack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            StartCoroutine(Attack());
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        attackBox.SetActive(true);
+        yield return new WaitForSeconds(attackDuration);
+        attackBox.SetActive(false);
     }
 
     public void CoinCollected()
@@ -44,7 +70,7 @@ public class NewPlayer : PhysicsObject
         coinsText.SetText(coinsCollected.ToString());
     }
 
-    public void AddHealthValue(int value)
+    public void ChangeHealthValue(int value)
     {
         SetHealth(health + value);
     }

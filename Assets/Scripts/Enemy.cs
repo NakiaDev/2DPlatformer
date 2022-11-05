@@ -15,6 +15,8 @@ public class Enemy : PhysicsObject
     RaycastHit2D rightWallRayCastHit;
     RaycastHit2D leftWallRayCastHit;
     int direction = 1;
+    int health = 100;
+    int maxHealth = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +55,15 @@ public class Enemy : PhysicsObject
         if (collision.gameObject.CompareTag("Player"))
         {
             NewPlayer player = collision.gameObject.GetComponent<NewPlayer>();
-            player.AddHealthValue(-attackPower);
+            player.ChangeHealthValue(-attackPower);
         }
+    }
+
+    public void ChangeHealthValue(int value)
+    {
+        health += value;
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }
