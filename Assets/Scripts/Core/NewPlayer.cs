@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class NewPlayer : PhysicsObject
 {
+    [Header("Attributes")]
     [SerializeField] float maxSpeed = 1;
     [SerializeField] float jumpPower = 10;
+    public int attackPower = 25;
+    [SerializeField] float attackDuration = .1f;
+
+    [Header("Inventory")]
     [SerializeField] int coinsCollected;
     [SerializeField] int health;
-    [SerializeField] float attackDuration = .1f;
-    [SerializeField] GameObject attackBox;
-
-    public int attackPower = 25;    
-    public Dictionary<string, Sprite> inventory = new();
-
     int maxHealth = 100;
+
+    [Header("References")]    
+    [SerializeField] GameObject attackBox;    
+    public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
 
     // singleton because of the singleplayer mode
