@@ -11,15 +11,10 @@ public class NewPlayer : PhysicsObject
     [SerializeField] int coinsCollected;
     [SerializeField] int health;
     [SerializeField] float attackDuration = .1f;
-    public int attackPower = 25;
-
-    [Space(10)]
-    public TextMeshProUGUI coinsText;
-    public Image healthBar;
-    public Dictionary<string, Sprite> inventory = new();
-    public Image inventoryItemImage;
-    public Sprite inventoryItemBlank;
     [SerializeField] GameObject attackBox;
+
+    public int attackPower = 25;    
+    public Dictionary<string, Sprite> inventory = new();
 
     int maxHealth = 100;
     Vector2 healthBarOrigSize;
@@ -37,15 +32,15 @@ public class NewPlayer : PhysicsObject
 
     private void Awake()
     {
-        if (GameObject.Find("OriginalPlayer")) Destroy(gameObject);
+        if (GameObject.Find("Original Player")) Destroy(gameObject);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        gameObject.name = "OriginalPlayer";
-        healthBarOrigSize = healthBar.rectTransform.sizeDelta;
+        gameObject.name = "Original Player";
+        healthBarOrigSize = GameManager.Instance.healthBar.rectTransform.sizeDelta;
         SetHealth(health);
         SetSpawnLocation();
     }
@@ -91,7 +86,7 @@ public class NewPlayer : PhysicsObject
     public void CoinCollected()
     {
         coinsCollected++;
-        coinsText.SetText(coinsCollected.ToString());
+        GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
     }
 
     public void ChangeHealthValue(int value)
@@ -106,7 +101,7 @@ public class NewPlayer : PhysicsObject
         
         if (health > 0 && health <= maxHealth)
         {
-            healthBar.rectTransform.sizeDelta = new Vector2(healthBarOrigSize.x * ((float)health / maxHealth), healthBar.rectTransform.sizeDelta.y);
+            GameManager.Instance.healthBar.rectTransform.sizeDelta = new Vector2(healthBarOrigSize.x * ((float)health / maxHealth), GameManager.Instance.healthBar.rectTransform.sizeDelta.y);
         }
         else if (health <= 0)
         {
@@ -117,7 +112,7 @@ public class NewPlayer : PhysicsObject
     public void AddInventoryItem(string inventoryName, Sprite image)
     {
         inventory.Add(inventoryName, image);
-        inventoryItemImage.sprite = inventory[inventoryName];
+        GameManager.Instance.inventoryItemImage.sprite = inventory[inventoryName];
     }
 
     public void RemoveInventoryItem(string inventoryName)
@@ -125,6 +120,6 @@ public class NewPlayer : PhysicsObject
         inventory.Remove(inventoryName);
         
         if (inventory.Count == 0)
-            inventoryItemImage.sprite = inventoryItemBlank;
+            GameManager.Instance.inventoryItemImage.sprite = GameManager.Instance.inventoryItemBlank;
     }
 }
