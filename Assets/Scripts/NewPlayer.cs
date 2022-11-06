@@ -35,11 +35,19 @@ public class NewPlayer : PhysicsObject
         }
     }
 
+    private void Awake()
+    {
+        if (GameObject.Find("OriginalPlayer")) Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        gameObject.name = "OriginalPlayer";
         healthBarOrigSize = healthBar.rectTransform.sizeDelta;
         SetHealth(health);
+        SetSpawnLocation();
     }
 
     // Update is called once per frame
@@ -58,6 +66,11 @@ public class NewPlayer : PhysicsObject
             transform.localScale = new Vector2(1, 1);
 
         HandleAttack();
+    }
+
+    public void SetSpawnLocation()
+    {
+        transform.position = GameObject.Find("Spawn Location").transform.position;
     }
 
     public void HandleAttack()
