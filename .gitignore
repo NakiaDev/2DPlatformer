@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#ignore large file
+Assets/Art/Level 1/CityGraphics.psb
+Assets/Art/Level 1/CityGraphics.psb.meta
