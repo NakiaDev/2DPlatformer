@@ -17,10 +17,12 @@ public class NewPlayer : PhysicsObject
     [SerializeField] int health;
     int maxHealth = 100;
 
-    [Header("References")]    
+    [Header("References")]
     [SerializeField] GameObject attackBox;    
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
+    Animator animator;
+
 
     // singleton because of the singleplayer mode
     private static NewPlayer instance;
@@ -36,6 +38,7 @@ public class NewPlayer : PhysicsObject
     private void Awake()
     {
         if (GameObject.Find("Original Player")) Destroy(gameObject);
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -51,6 +54,15 @@ public class NewPlayer : PhysicsObject
     // Update is called once per frame
     void Update()
     {
+        PlayerMovement();
+        HandleAttack();
+
+        animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+        animator.SetFloat("velocityY", velocity.y);
+    }
+
+    private void PlayerMovement()
+    {
         targetVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed, 0);
 
         if (Input.GetButtonDown("Jump") && grounded)
@@ -62,8 +74,6 @@ public class NewPlayer : PhysicsObject
             transform.localScale = new Vector2(-1, 1);
         else if (targetVelocity.x > 0)
             transform.localScale = new Vector2(1, 1);
-
-        HandleAttack();
     }
 
     public void SetSpawnLocation()
