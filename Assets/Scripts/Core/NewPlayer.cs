@@ -17,8 +17,7 @@ public class NewPlayer : PhysicsObject
     [SerializeField] int health;
     int maxHealth = 100;
 
-    [Header("References")]
-    [SerializeField] GameObject attackBox;    
+    //[Header("References")]
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
     Animator animator;
@@ -56,10 +55,15 @@ public class NewPlayer : PhysicsObject
     {
         PlayerMovement();
         HandleAttack();
+        SetAnimatorValues();
+    }
 
+    private void SetAnimatorValues()
+    {
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
         animator.SetFloat("velocityY", velocity.y);
         animator.SetBool("grounded", grounded);
+        animator.SetFloat("attackDirectionY", Input.GetAxis("Vertical"));
     }
 
     private void PlayerMovement()
@@ -86,15 +90,8 @@ public class NewPlayer : PhysicsObject
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            StartCoroutine(Attack());
+            animator.SetTrigger("attack");
         }
-    }
-
-    private IEnumerator Attack()
-    {
-        attackBox.SetActive(true);
-        yield return new WaitForSeconds(attackDuration);
-        attackBox.SetActive(false);
     }
 
     public void CoinCollected()
