@@ -59,6 +59,7 @@ public class NewPlayer : PhysicsObject
 
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
         animator.SetFloat("velocityY", velocity.y);
+        animator.SetBool("grounded", grounded);
     }
 
     private void PlayerMovement()
