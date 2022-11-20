@@ -10,7 +10,7 @@ public class Enemy : PhysicsObject
     [SerializeField] Vector2 rayCastOffset;
     [SerializeField] float rayCastLength = 2;
     [SerializeField] LayerMask rayCastLayerMask;
-    int direction = 1;
+    [SerializeField] int direction = 1;
     int health = 100;
     int maxHealth = 100;
 
@@ -20,6 +20,8 @@ public class Enemy : PhysicsObject
     RaycastHit2D rightWallRayCastHit;
     RaycastHit2D leftWallRayCastHit;
 
+    Animator animator;
+
     [Header("Sound effects")]
     [SerializeField] AudioClip hurtSound;
     [Range(0f, 1f)]
@@ -28,6 +30,12 @@ public class Enemy : PhysicsObject
     [Range(0f, 1f)]
     [SerializeField] float deathSoundVolume = 1f;
 
+    public int AttackPower { get => attackPower; }
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,32 +58,25 @@ public class Enemy : PhysicsObject
         if (leftLedgeRayCastHit.collider == null)
             direction = 1;
 
-        rightWallRayCastHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right, rayCastLength, rayCastLayerMask);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), Vector2.right * rayCastLength, Color.yellow);
+        rightWallRayCastHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + rayCastOffset.y), Vector2.right, rayCastLength, rayCastLayerMask);
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + rayCastOffset.y), Vector2.right * rayCastLength, Color.yellow);
         if (rightWallRayCastHit.collider != null)
             direction = -1;
 
-        leftWallRayCastHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.left, rayCastLength, rayCastLayerMask);
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), Vector2.left * rayCastLength, Color.cyan);
+        leftWallRayCastHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + rayCastOffset.y), Vector2.left, rayCastLength, rayCastLayerMask);
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + rayCastOffset.y), Vector2.left * rayCastLength, Color.cyan);
         if (leftWallRayCastHit.collider != null)
             direction = 1;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void ChangeDirection()
     {
-        if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
-        {
-            NewPlayer.Instance.ChangeHealthValue(-attackPower);
-        }
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            direction *= -1;
-        }
+         direction *= -1;
     }
 
-    public void ChangeHealthValue(int value)
+    public void Hurt(int value)
     {
-        health += value;
+        health -= value;
 
         if (health <= 0)
         {
@@ -84,10 +85,12 @@ public class Enemy : PhysicsObject
 
             Destroy(gameObject);
         }
-        else if (hurtSound != null)
+        else 
         {
-            NewPlayer.Instance.sfxAudioSource.PlayOneShot(hurtSound, hurtSoundVolume);
+            animator.SetTrigger("hurt");
 
+            if (hurtSound != null)
+                NewPlayer.Instance.sfxAudioSource.PlayOneShot(hurtSound, hurtSoundVolume);
         }
     }
 }
