@@ -100,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05299896}
-  m_Size: {x: 0.89, y: 1.085998}
+  m_Offset: {x: 0, y: -0.053981185}
+  m_Size: {x: 0.89, y: 1.0879624}
   m_Direction: 0
 --- !u!50 &4746982065749975055
 Rigidbody2D:
@@ -145,3 +145,7 @@ MonoBehaviour:
   rayCastLayerMask:
     serializedVersion: 2
     m_Bits: 51
+  hurtSound: {fileID: 8300000, guid: 30e0539cc43f9f14a9e37d72c0be987b, type: 3}
+  hurtSoundVolume: 0.1
+  deathSound: {fileID: 8300000, guid: dcfdfbfa112af4b428890a2a8b945c70, type: 3}
+  deathSoundVolume: 0.1

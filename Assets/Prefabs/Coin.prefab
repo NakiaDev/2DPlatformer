@@ -101,6 +101,8 @@ MonoBehaviour:
   itemType: 0
   inventoryItemName: 0
   inventoryItemSprite: {fileID: 0}
+  sound: {fileID: 8300000, guid: 766cdcd8864b2bc4199ea121f5cd030c, type: 3}
+  soundVolume: 0.05
 --- !u!61 &2687778356314799568
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,11 @@ public class Collectable : MonoBehaviour
     [SerializeField] ItemType itemType;
     [SerializeField] InventoryItemName inventoryItemName;
     [SerializeField] Sprite inventoryItemSprite;
+    
+    [Header("Sound")]
+    [SerializeField] AudioClip sound;
+    [Range(0f, 1f)]
+    [SerializeField] float soundVolume = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +44,9 @@ public class Collectable : MonoBehaviour
                     NewPlayer.Instance.AddInventoryItem(inventoryItemName.ToString(), inventoryItemSprite);
                     break;
             }
+
+            if (sound != null)
+                NewPlayer.Instance.sfxAudioSource.PlayOneShot(sound, soundVolume * Random.Range(.8f, 1.4f));
 
             Destroy(gameObject);
         }

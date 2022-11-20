@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class Enemy : PhysicsObject
 {
+    [Header("Attributes")]
     [SerializeField] float maxSpeed;
     [SerializeField] int attackPower = 10;
     [SerializeField] Vector2 rayCastOffset;
     [SerializeField] float rayCastLength = 2;
     [SerializeField] LayerMask rayCastLayerMask;
+    int direction = 1;
+    int health = 100;
+    int maxHealth = 100;
 
+    [Header("References")]
     RaycastHit2D rightLedgeRayCastHit;
     RaycastHit2D leftLedgeRayCastHit;
     RaycastHit2D rightWallRayCastHit;
     RaycastHit2D leftWallRayCastHit;
-    int direction = 1;
-    int health = 100;
-    int maxHealth = 100;
+
+    [Header("Sound effects")]
+    [SerializeField] AudioClip hurtSound;
+    [Range(0f, 1f)]
+    [SerializeField] float hurtSoundVolume = 1f;
+    [SerializeField] AudioClip deathSound;
+    [Range(0f, 1f)]
+    [SerializeField] float deathSoundVolume = 1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +78,16 @@ public class Enemy : PhysicsObject
         health += value;
 
         if (health <= 0)
+        {
+            if (deathSound != null)
+                NewPlayer.Instance.sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);
+
             Destroy(gameObject);
+        }
+        else if (hurtSound != null)
+        {
+            NewPlayer.Instance.sfxAudioSource.PlayOneShot(hurtSound, hurtSoundVolume);
+
+        }
     }
 }

@@ -17,7 +17,10 @@ public class NewPlayer : PhysicsObject
     [SerializeField] int health;
     int maxHealth = 100;
 
-    //[Header("References")]
+    [Header("References")]
+    public AudioSource sfxAudioSource;
+    public AudioSource musicAudioSource;
+    public AudioSource ambienceAudioSource;
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
     Animator animator;
@@ -102,6 +105,9 @@ public class NewPlayer : PhysicsObject
 
     public void ChangeHealthValue(int value)
     {
+        if (value < 0)
+            animator.SetTrigger("hurt");
+
         SetHealth(health + value);
     }
 
