@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NewPlayer : PhysicsObject
 {
@@ -11,6 +12,7 @@ public class NewPlayer : PhysicsObject
     [SerializeField] float jumpPower = 10;
     public int attackPower = 25;
     [SerializeField] float attackDuration = .1f;
+    bool frozen = false;
 
     [Header("Inventory")]
     [SerializeField] int coinsCollected;
@@ -25,6 +27,9 @@ public class NewPlayer : PhysicsObject
     Vector2 healthBarOrigSize;
     Animator animator;
     AnimatorFunctions animatorFunctions;
+    [SerializeField] AudioClip deathSound;
+    [Range(0f, 1f)]
+    [SerializeField] float deathSoundVolume;
 
 
     // singleton because of the singleplayer mode
@@ -58,8 +63,12 @@ public class NewPlayer : PhysicsObject
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        HandleAttack();
+        if (!frozen)
+        {
+            PlayerMovement();
+            HandleAttack();
+        }
+        
         SetAnimatorValues();
     }
 
@@ -125,8 +134,36 @@ public class NewPlayer : PhysicsObject
         }
         else if (health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Death());
         }
+    }
+
+    private IEnumerator Death()
+    {
+        frozen = true;
+        sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);
+        animator.SetBool("dead", true);
+        animatorFunctions.EmitParticles("death");
+        yield return new WaitForSeconds(2);
+        ReloadLevel();
+    }
+
+    private void ReloadLevel()
+    {
+        ParticleSystem[] particles = FindObjectsOfType<ParticleSystem>();
+        foreach (ParticleSystem particle in particles)
+        {
+            particle.Clear();
+        }
+
+        SetHealth(100);
+        coinsCollected = 0;
+        GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
+        RemoveInventoryItem(removeAll: true);
+        SetSpawnLocation();
+        frozen = false;
+        animator.SetBool("dead", false);
+        SceneManager.LoadScene("Level 1");        
     }
 
     public void AddInventoryItem(string inventoryName, Sprite image)
@@ -135,9 +172,12 @@ public class NewPlayer : PhysicsObject
         GameManager.Instance.inventoryItemImage.sprite = inventory[inventoryName];
     }
 
-    public void RemoveInventoryItem(string inventoryName)
+    public void RemoveInventoryItem(string inventoryName = "", bool removeAll = false)
     {
-        inventory.Remove(inventoryName);
+        if (!string.IsNullOrEmpty(inventoryName))
+            inventory.Remove(inventoryName);
+        else if (removeAll)
+            inventory.Clear();
         
         if (inventory.Count == 0)
             GameManager.Instance.inventoryItemImage.sprite = GameManager.Instance.inventoryItemBlank;

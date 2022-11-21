@@ -19473,6 +19473,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2201651291721136409, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
+      propertyPath: particlesList.Array.data[4].emitAmount
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7131897316874402202, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -19519,10 +19523,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8228515250490008057, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8555668364954600354, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
-      propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

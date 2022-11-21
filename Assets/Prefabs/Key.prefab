@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   inventoryItemName: 0
-  inventoryItemSprite: {fileID: 5685157634151735597, guid: 10921def3fc85ef448a98282065359ff, type: 3}
+  inventoryItemSprite: {fileID: 8498199697627196985, guid: b4160f88f5cc52341ad4355f62934172, type: 3}
   particleCollectableSpark: {fileID: 3370345241045830110}
   sound: {fileID: 8300000, guid: 1764f31cb8f6cb0408c16e22e1a3886d, type: 3}
   soundVolume: 0.075

@@ -1426,6 +1426,8 @@ MonoBehaviour:
   sfxAudioSource: {fileID: 8555668364954600354}
   musicAudioSource: {fileID: 6373233624705177507}
   ambienceAudioSource: {fileID: 1622263115833211984}
+  deathSound: {fileID: 8300000, guid: b6a5e07fc1b91b94b8a0a3257a3ffdfd, type: 3}
+  deathSoundVolume: 0.2
 --- !u!114 &2201651291721136409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,6 +1452,9 @@ MonoBehaviour:
     emitAmount: 5
   - name: kickDown
     particleSystem: {fileID: 8534123823924226534}
+    emitAmount: 5
+  - name: death
+    particleSystem: {fileID: 9165167261888234589}
     emitAmount: 5
   sounds:
   - name: punch1
@@ -1548,6 +1553,72 @@ PrefabInstance:
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1400924510694372507, guid: dd7eaa3029e2e2447858f5e7b73d8d1b, type: 3}
   m_PrefabInstance: {fileID: 7286359161567239549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7469769028315963076
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8228515250490008057}
+    m_Modifications:
+    - target: {fileID: 1772382275629980313, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.241
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.578
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5952126626519391692, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752890236530052977, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+      propertyPath: m_Name
+      value: Particle Player Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+--- !u!198 &9165167261888234589 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1772382275629980313, guid: e94e4ec1eba59bb4d933a3e7d9178676, type: 3}
+  m_PrefabInstance: {fileID: 7469769028315963076}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7790491646986093862
 PrefabInstance:
