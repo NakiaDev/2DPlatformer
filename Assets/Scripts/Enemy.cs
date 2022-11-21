@@ -15,6 +15,7 @@ public class Enemy : PhysicsObject
     int maxHealth = 100;
 
     [Header("References")]
+    [SerializeField] ParticleSystem particleEnemyExplosion;
     RaycastHit2D rightLedgeRayCastHit;
     RaycastHit2D leftLedgeRayCastHit;
     RaycastHit2D rightWallRayCastHit;
@@ -82,6 +83,9 @@ public class Enemy : PhysicsObject
         {
             if (deathSound != null)
                 NewPlayer.Instance.sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);
+
+            particleEnemyExplosion.transform.parent = gameObject.transform.parent;
+            particleEnemyExplosion.gameObject.SetActive(true);
 
             Destroy(gameObject);
         }

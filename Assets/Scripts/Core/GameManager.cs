@@ -32,10 +32,4 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         gameObject.name = "Original Game Manager";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

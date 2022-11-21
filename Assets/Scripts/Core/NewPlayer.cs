@@ -24,6 +24,7 @@ public class NewPlayer : PhysicsObject
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
     Animator animator;
+    AnimatorFunctions animatorFunctions;
 
 
     // singleton because of the singleplayer mode
@@ -41,6 +42,7 @@ public class NewPlayer : PhysicsObject
     {
         if (GameObject.Find("Original Player")) Destroy(gameObject);
         animator = GetComponent<Animator>();
+        animatorFunctions = GetComponent<AnimatorFunctions>();
     }
 
     // Start is called before the first frame update
@@ -75,6 +77,7 @@ public class NewPlayer : PhysicsObject
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
+            animatorFunctions.EmitParticles("step");
             velocity.y = jumpPower;
         }
 
