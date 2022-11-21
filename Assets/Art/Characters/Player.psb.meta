@@ -416,7 +416,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -350, y: -1066}
+    uvTransform: {x: -350, y: -1061}
   - name: EyeR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -742,7 +742,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -462, y: -1018}
+    uvTransform: {x: -462, y: -1013}
   - name: HandR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1068,7 +1068,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -1469, y: -816}
+    uvTransform: {x: -1469, y: -811}
   - name: ArmR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1495,7 +1495,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -518, y: -1227}
+    uvTransform: {x: -518, y: -1222}
   - name: BicepR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1922,7 +1922,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -286, y: -1172}
+    uvTransform: {x: -286, y: -1167}
   - name: Chest
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2392,7 +2392,7 @@ ScriptedImporter:
     - {x: 29, y: 30}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -854, y: -888}
+    uvTransform: {x: -854, y: -883}
   - name: FootR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2707,7 +2707,7 @@ ScriptedImporter:
     - {x: 23, y: 24}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -683, y: -47}
+    uvTransform: {x: -683, y: -42}
   - name: CalfR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3345,7 +3345,7 @@ ScriptedImporter:
     - {x: 26, y: 27}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -528, y: -402}
+    uvTransform: {x: -528, y: -397}
   - name: ThighR
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4015,7 +4015,7 @@ ScriptedImporter:
     - {x: 26, y: 27}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -582, y: -642}
+    uvTransform: {x: -582, y: -637}
   - name: FootL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4341,7 +4341,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -329, y: 40}
+    uvTransform: {x: -329, y: 45}
   - name: CalfL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4934,7 +4934,7 @@ ScriptedImporter:
     - {x: 25, y: 26}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -131, y: -402}
+    uvTransform: {x: -131, y: -397}
   - name: ThighL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5506,7 +5506,7 @@ ScriptedImporter:
     - {x: 26, y: 27}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -596, y: -441}
+    uvTransform: {x: -596, y: -436}
   - name: HandL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5832,7 +5832,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -281, y: -816}
+    uvTransform: {x: -281, y: -811}
   - name: ArmL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6268,7 +6268,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 335, y: -1116}
+    uvTransform: {x: 335, y: -1111}
   - name: BicepL
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6695,7 +6695,7 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 103, y: -1061}
+    uvTransform: {x: 103, y: -1056}
   - name: Head
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7032,7 +7032,7 @@ ScriptedImporter:
     - {x: 25, y: 26}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -653, y: -1299}
+    uvTransform: {x: -653, y: -1294}
   characterData:
     bones:
     - name: Pelvis
