@@ -81,12 +81,15 @@ public class Enemy : PhysicsObject
 
         if (health <= 0)
         {
+            NewPlayer.Instance.StartCoroutine(NewPlayer.Instance.FreezeEffect(.3f, .4f));
+
             if (deathSound != null)
                 NewPlayer.Instance.sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);
 
             particleEnemyExplosion.transform.parent = gameObject.transform.parent;
             particleEnemyExplosion.gameObject.SetActive(true);
-
+            NewPlayer.Instance.cameraEffects.Shake(5, .2f);
+            
             Destroy(gameObject);
         }
         else 

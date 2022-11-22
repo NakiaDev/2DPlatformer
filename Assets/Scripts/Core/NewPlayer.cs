@@ -13,6 +13,7 @@ public class NewPlayer : PhysicsObject
     public int attackPower = 25;
     [SerializeField] float attackDuration = .1f;
     bool frozen = false;
+    bool isDying = false;
 
     [Header("Inventory")]
     [SerializeField] int coinsCollected;
@@ -23,6 +24,7 @@ public class NewPlayer : PhysicsObject
     public AudioSource sfxAudioSource;
     public AudioSource musicAudioSource;
     public AudioSource ambienceAudioSource;
+    public CameraEffects cameraEffects;
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
     Animator animator;
@@ -30,7 +32,6 @@ public class NewPlayer : PhysicsObject
     [SerializeField] AudioClip deathSound;
     [Range(0f, 1f)]
     [SerializeField] float deathSoundVolume;
-
 
     // singleton because of the singleplayer mode
     private static NewPlayer instance;
@@ -115,11 +116,16 @@ public class NewPlayer : PhysicsObject
         GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
     }
 
-    public void ChangeHealthValue(int value)
+    public void Hurt(int value)
     {
-        if (value < 0)
-            animator.SetTrigger("hurt");
+        StartCoroutine(FreezeEffect(.5f, .6f));
+        animator.SetTrigger("hurt");
+        cameraEffects.Shake(5, .5f);
+        SetHealth(health - value);
+    }
 
+    public void AddHealth(int value)
+    {
         SetHealth(health + value);
     }
 
@@ -127,13 +133,14 @@ public class NewPlayer : PhysicsObject
     {
         health = value;
         if (health > maxHealth) health = 100;
-        
+
         if (health > 0 && health <= maxHealth)
         {
             GameManager.Instance.healthBar.rectTransform.sizeDelta = new Vector2(healthBarOrigSize.x * ((float)health / maxHealth), GameManager.Instance.healthBar.rectTransform.sizeDelta.y);
         }
-        else if (health <= 0)
+        else if (health <= 0 && !isDying)
         {
+            isDying = true;
             StartCoroutine(Death());
         }
     }
@@ -146,6 +153,13 @@ public class NewPlayer : PhysicsObject
         animatorFunctions.EmitParticles("death");
         yield return new WaitForSeconds(2);
         ReloadLevel();
+    }
+
+    public IEnumerator FreezeEffect(float length, float timeScale)
+    {
+        Time.timeScale = timeScale;
+        yield return new WaitForSeconds(length);
+        Time.timeScale = 1;
     }
 
     private void ReloadLevel()
@@ -163,6 +177,7 @@ public class NewPlayer : PhysicsObject
         SetSpawnLocation();
         frozen = false;
         animator.SetBool("dead", false);
+        isDying = false;
         SceneManager.LoadScene("Level 1");        
     }
 

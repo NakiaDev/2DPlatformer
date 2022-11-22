@@ -19,9 +19,9 @@ public class AttackBox : MonoBehaviour
         }
         else if (parent == parentType.Enemy)
         {
-            if (NewPlayer.Instance != null && collisionObjectToCheck == NewPlayer.Instance.gameObject)
+            if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
             {
-                NewPlayer.Instance.ChangeHealthValue(-transform.parent.gameObject.GetComponent<Enemy>().AttackPower);
+                NewPlayer.Instance.Hurt(transform.parent.gameObject.GetComponent<Enemy>().AttackPower);
             }
             else if (collisionObjectToCheck.CompareTag("Enemy"))
             {
