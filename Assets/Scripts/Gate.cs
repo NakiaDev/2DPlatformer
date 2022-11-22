@@ -5,25 +5,11 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     [SerializeField] Collectable.InventoryItemName requiredKeyName;
+    Animator animator;
 
-    bool openGate;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (openGate)
-        {
-            if (gameObject.transform.position.y >= 7.2f)
-                openGate = false;
-            else
-                gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + (3 * Time.deltaTime), gameObject.transform.position.z);
-        }
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +19,7 @@ public class Gate : MonoBehaviour
             if (NewPlayer.Instance.inventory.ContainsKey(requiredKeyName.ToString()))
             {
                 NewPlayer.Instance.RemoveInventoryItem(requiredKeyName.ToString());
-                openGate = true;
+                animator.SetBool("opened", true);
             }
         }
     }
