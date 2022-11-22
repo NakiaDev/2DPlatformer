@@ -111,7 +111,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -3408, y: -1988}
+    uvTransform: {x: -3408, y: -1993}
   - name: Inventory Key
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +132,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -3400, y: -1988}
+    uvTransform: {x: -3400, y: -1993}
   - name: Inventory Blank
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +153,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -3718, y: -1988}
+    uvTransform: {x: -3718, y: -1993}
   - name: Health Bar
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -174,7 +174,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -86, y: -2047}
+    uvTransform: {x: -86, y: -2052}
   characterData:
     bones: []
     parts: []

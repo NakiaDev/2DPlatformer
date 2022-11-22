@@ -300,7 +300,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4840, y: 3463}
+    uvTransform: {x: 4837, y: 3453}
   - name: Crane
     originalName: 
     pivot: {x: 0.5, y: 0.5}
