@@ -19398,14 +19398,6 @@ PrefabInstance:
       propertyPath: cameraEffects
       value: 
       objectReference: {fileID: 7429659144525552274}
-    - target: {fileID: 1741448425, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 97
-      objectReference: {fileID: 0}
-    - target: {fileID: 1741448425, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.855
-      objectReference: {fileID: 0}
     - target: {fileID: 7131897316874402202, guid: dd9232f044d4de445b13e2ccb2deccb0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -19463,10 +19455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1681441741, guid: a249c6f57691fa14e984d8c6a2badc35, type: 3}
-      propertyPath: m_FrequencyGain
-      value: 1.79072e-12
-      objectReference: {fileID: 0}
     - target: {fileID: 1028574879586767082, guid: a249c6f57691fa14e984d8c6a2badc35, type: 3}
       propertyPath: m_RootOrder
       value: 0
