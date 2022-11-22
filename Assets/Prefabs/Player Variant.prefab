@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: 0
+  targetSide: 0
 --- !u!50 &1741448426
 Rigidbody2D:
   serializedVersion: 4
@@ -1166,8 +1167,8 @@ MonoBehaviour:
   attackPower: 25
   attackDuration: 0.05
   health: 100
-  fallForgiveness: 0.25
-  fallForgivenessCounter: 0
+  launchRecovery: 5
+  launchPower: {x: 15, y: 10}
   coinsCollected: 0
   sfxAudioSource: {fileID: 8555668364954600354}
   cameraEffects: {fileID: 0}

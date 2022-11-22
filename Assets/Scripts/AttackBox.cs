@@ -6,6 +6,7 @@ public class AttackBox : MonoBehaviour
 {
     enum parentType { Player, Enemy}
     [SerializeField] parentType parent;
+    [SerializeField] int targetSide;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,7 +22,12 @@ public class AttackBox : MonoBehaviour
         {
             if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
             {
-                NewPlayer.Instance.Hurt(transform.parent.gameObject.GetComponent<Enemy>().AttackPower);
+                if (transform.parent.transform.position.x < collision.transform.position.x)
+                    targetSide = -1;
+                else
+                    targetSide = 1;
+
+                NewPlayer.Instance.Hurt(transform.parent.gameObject.GetComponent<Enemy>().AttackPower, targetSide);
             }
             else if (collisionObjectToCheck.CompareTag("Enemy"))
             {

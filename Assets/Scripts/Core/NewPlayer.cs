@@ -16,8 +16,11 @@ public class NewPlayer : PhysicsObject
     bool isDying = false;
     public int health;
     int maxHealth = 100;
-    [SerializeField] float fallForgiveness = 1; // amount which allow player to jump while falling
-    [SerializeField] float fallForgivenessCounter; // counter which starts at the moment when the player falls
+    float fallForgiveness = 1; // amount which allow player to jump while falling
+    float fallForgivenessCounter = .25f; // counter which starts at the moment when the player falls
+    float launch;
+    [SerializeField] float launchRecovery;
+    [SerializeField] Vector2 launchPower;
 
     [Header("Inventory")]
     [SerializeField] int coinsCollected;    
@@ -64,6 +67,9 @@ public class NewPlayer : PhysicsObject
     // Update is called once per frame
     void Update()
     {
+        // set launch value back to 0 over time
+        launch += (0 - launch) * Time.deltaTime * launchRecovery;
+
         if (!frozen)
         {
             PlayerMovement();
@@ -86,7 +92,7 @@ public class NewPlayer : PhysicsObject
 
     private void PlayerMovement()
     {
-        targetVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed, 0);
+        targetVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed + launch, 0);
 
         if (!grounded)
             fallForgivenessCounter += Time.deltaTime;
@@ -126,12 +132,14 @@ public class NewPlayer : PhysicsObject
         GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
     }
 
-    public void Hurt(int value)
+    public void Hurt(int value, int targetSide)
     {
-        StartCoroutine(FreezeEffect(.2f, .5f));
-        animator.SetTrigger("hurt");
+        launch = -targetSide * launchPower.x;
+        velocity.y = launchPower.y;
+        animator.SetTrigger("hurt");        
         cameraEffects.Shake(5, .5f);
         SetHealth(health - value);
+        StartCoroutine(FreezeEffect(.2f, .5f));
     }
 
     public void AddHealth(int value)
