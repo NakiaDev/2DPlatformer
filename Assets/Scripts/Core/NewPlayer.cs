@@ -16,6 +16,8 @@ public class NewPlayer : PhysicsObject
     bool isDying = false;
     public int health;
     int maxHealth = 100;
+    [SerializeField] float fallForgiveness = 1; // amount which allow player to jump while falling
+    [SerializeField] float fallForgivenessCounter; // counter which starts at the moment when the player falls
 
     [Header("Inventory")]
     [SerializeField] int coinsCollected;    
@@ -86,10 +88,17 @@ public class NewPlayer : PhysicsObject
     {
         targetVelocity = new Vector2(Input.GetAxis("Horizontal") * maxSpeed, 0);
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (!grounded)
+            fallForgivenessCounter += Time.deltaTime;
+        else
+            fallForgivenessCounter = 0;
+
+        if (Input.GetButtonDown("Jump") && fallForgivenessCounter < fallForgiveness)
         {
             animatorFunctions.EmitParticles("step");
             velocity.y = jumpPower;
+            grounded = false;
+            fallForgivenessCounter = fallForgiveness;
         }
 
         if (targetVelocity.x < 0)
