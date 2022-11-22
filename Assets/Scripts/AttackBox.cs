@@ -14,7 +14,7 @@ public class AttackBox : MonoBehaviour
         if (collisionObjectToCheck.transform.parent != null)
             collisionObjectToCheck = collisionObjectToCheck.transform.parent.gameObject;
 
-        if (parent == parentType.Player && collisionObjectToCheck.CompareTag("Enemy"))
+        if (NewPlayer.Instance != null && parent == parentType.Player && collisionObjectToCheck.CompareTag("Enemy"))
         {
             collisionObjectToCheck.GetComponent<Enemy>().Hurt(NewPlayer.Instance.attackPower);
         }

@@ -77,6 +77,8 @@ public class Enemy : PhysicsObject
 
     public void Hurt(int value)
     {
+        if (NewPlayer.Instance == null) return;
+
         health -= value;
 
         if (health <= 0)

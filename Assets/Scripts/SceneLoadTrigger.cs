@@ -6,14 +6,21 @@ using UnityEngine.SceneManagement;
 public class SceneLoadTrigger : MonoBehaviour
 {
     [SerializeField] string loadSceneString;
-
+    [SerializeField] bool destroyPlayer;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == NewPlayer.Instance.gameObject)
+        if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
         {
             SceneManager.LoadScene(loadSceneString);
-            NewPlayer.Instance.SetSpawnLocation();
+
+            if (destroyPlayer)
+            {
+                Destroy(NewPlayer.Instance);
+                Destroy(GameManager.Instance);
+            }
+            else
+                NewPlayer.Instance.SetSpawnLocation();
         }
     }
 }

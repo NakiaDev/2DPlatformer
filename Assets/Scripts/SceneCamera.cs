@@ -10,7 +10,8 @@ public class SceneCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cinemachineVirtualCamera.Follow = NewPlayer.Instance.transform;
+        if (NewPlayer.Instance != null)
+            cinemachineVirtualCamera.Follow = NewPlayer.Instance.transform;
     }
 
     // Update is called once per frame

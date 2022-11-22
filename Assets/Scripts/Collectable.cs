@@ -20,7 +20,7 @@ public class Collectable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == NewPlayer.Instance.gameObject)
+        if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
         {
             if (particleCollectableSpark != null)
             {

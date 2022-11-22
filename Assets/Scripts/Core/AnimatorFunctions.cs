@@ -11,6 +11,8 @@ public class AnimatorFunctions : MonoBehaviour
 
     void PlaySound(string name)
     {
+        if (NewPlayer.Instance == null) return;
+
         if (sounds == null || sounds.Count == 0)
         {
             Debug.Log("sounds list empty");

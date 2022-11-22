@@ -59,7 +59,8 @@ public class NewPlayer : PhysicsObject
     {
         DontDestroyOnLoad(gameObject);
         gameObject.name = "Original Player";
-        healthBarOrigSize = GameManager.Instance.healthBar.rectTransform.sizeDelta;
+        if (GameManager.Instance != null)
+            healthBarOrigSize = GameManager.Instance.healthBar.rectTransform.sizeDelta;
         SetHealth(health);
         SetSpawnLocation();
     }
@@ -129,7 +130,8 @@ public class NewPlayer : PhysicsObject
     public void CoinCollected()
     {
         coinsCollected++;
-        GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
+        if (GameManager.Instance != null)
+            GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
     }
 
     public void Hurt(int value, int targetSide)
@@ -152,7 +154,7 @@ public class NewPlayer : PhysicsObject
         health = value;
         if (health > maxHealth) health = 100;
 
-        if (health > 0 && health <= maxHealth)
+        if (GameManager.Instance != null && health > 0 && health <= maxHealth)
         {
             GameManager.Instance.healthBar.rectTransform.sizeDelta = new Vector2(healthBarOrigSize.x * ((float)health / maxHealth), GameManager.Instance.healthBar.rectTransform.sizeDelta.y);
         }
@@ -190,7 +192,8 @@ public class NewPlayer : PhysicsObject
 
         SetHealth(100);
         coinsCollected = 0;
-        GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
+        if (GameManager.Instance != null)
+            GameManager.Instance.coinsText.SetText(coinsCollected.ToString());
         RemoveInventoryItem(removeAll: true);
         SetSpawnLocation();
         frozen = false;
@@ -202,7 +205,8 @@ public class NewPlayer : PhysicsObject
     public void AddInventoryItem(string inventoryName, Sprite image)
     {
         inventory.Add(inventoryName, image);
-        GameManager.Instance.inventoryItemImage.sprite = inventory[inventoryName];
+        if (GameManager.Instance != null)
+            GameManager.Instance.inventoryItemImage.sprite = inventory[inventoryName];
     }
 
     public void RemoveInventoryItem(string inventoryName = "", bool removeAll = false)
@@ -212,7 +216,7 @@ public class NewPlayer : PhysicsObject
         else if (removeAll)
             inventory.Clear();
         
-        if (inventory.Count == 0)
+        if (GameManager.Instance != null && inventory.Count == 0)
             GameManager.Instance.inventoryItemImage.sprite = GameManager.Instance.inventoryItemBlank;
     }
 }
