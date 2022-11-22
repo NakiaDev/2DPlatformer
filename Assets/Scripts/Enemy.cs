@@ -81,7 +81,7 @@ public class Enemy : PhysicsObject
 
         if (health <= 0)
         {
-            NewPlayer.Instance.StartCoroutine(NewPlayer.Instance.FreezeEffect(.3f, .4f));
+            NewPlayer.Instance.StartCoroutine(NewPlayer.Instance.FreezeEffect(.2f, .5f));
 
             if (deathSound != null)
                 NewPlayer.Instance.sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);

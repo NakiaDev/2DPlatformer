@@ -14,16 +14,14 @@ public class NewPlayer : PhysicsObject
     [SerializeField] float attackDuration = .1f;
     bool frozen = false;
     bool isDying = false;
+    public int health;
+    int maxHealth = 100;
 
     [Header("Inventory")]
-    [SerializeField] int coinsCollected;
-    [SerializeField] int health;
-    int maxHealth = 100;
+    [SerializeField] int coinsCollected;    
 
     [Header("References")]
     public AudioSource sfxAudioSource;
-    public AudioSource musicAudioSource;
-    public AudioSource ambienceAudioSource;
     public CameraEffects cameraEffects;
     public Dictionary<string, Sprite> inventory = new();    
     Vector2 healthBarOrigSize;
@@ -118,7 +116,7 @@ public class NewPlayer : PhysicsObject
 
     public void Hurt(int value)
     {
-        StartCoroutine(FreezeEffect(.5f, .6f));
+        StartCoroutine(FreezeEffect(.2f, .5f));
         animator.SetTrigger("hurt");
         cameraEffects.Shake(5, .5f);
         SetHealth(health - value);
