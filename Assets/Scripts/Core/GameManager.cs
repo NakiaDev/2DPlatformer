@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Image healthBar;
     public Image inventoryItemImage;
     public Sprite inventoryItemBlank;
+    public Animator uiAnimator;
 
     private static GameManager instance;
     public static GameManager Instance

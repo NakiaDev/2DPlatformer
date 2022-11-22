@@ -470,7 +470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: ea4f810cd285ec442b4cdf220a04d649, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: ea4f810cd285ec442b4cdf220a04d649, type: 3}
       propertyPath: m_Layer

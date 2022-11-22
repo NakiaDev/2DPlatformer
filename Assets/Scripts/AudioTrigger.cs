@@ -83,7 +83,8 @@ public class AudioTrigger : MonoBehaviour
                 {
                     if (controlsTitle)
                     {
-                        //Control titles here (will write in future video!)
+                        GameManager.Instance.uiAnimator.SetTrigger("showTitle");
+                        controlsTitle = false;
                     }
 
                     triggered = true;

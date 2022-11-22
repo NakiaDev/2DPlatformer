@@ -69,6 +69,9 @@ public class NewPlayer : PhysicsObject
         }
         
         SetAnimatorValues();
+
+        if (gameObject.transform.position.y < -15 && !isDying)
+            StartCoroutine(Death());
     }
 
     private void SetAnimatorValues()
@@ -138,13 +141,13 @@ public class NewPlayer : PhysicsObject
         }
         else if (health <= 0 && !isDying)
         {
-            isDying = true;
             StartCoroutine(Death());
         }
     }
 
     private IEnumerator Death()
     {
+        isDying = true;
         frozen = true;
         sfxAudioSource.PlayOneShot(deathSound, deathSoundVolume);
         animator.SetBool("dead", true);
