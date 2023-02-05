@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// from https://learn.unity.com/tutorial/live-session-2d-platformer-character-controller scroll a little and you can copy the code
+// changed some things based on Visual Studio's recommendation
+
 public class PhysicsObject : MonoBehaviour
 {
     [Header("Physics Object Attributes")]
     public float minGroundNormalY = .65f;
     public float gravityModifier = 1f;
 
-    protected Vector2 targetVelocity;
+    [System.NonSerialized] public Vector2 targetVelocity; // made to public so NewPlayer.cs can change it
     protected bool grounded;
     protected Vector2 groundNormal;
     protected Rigidbody2D rb2d;
-    protected Vector2 velocity;
+    [System.NonSerialized] public Vector2 velocity; // made to public so EnemyBase.cs can change it
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
@@ -39,26 +42,18 @@ public class PhysicsObject : MonoBehaviour
         ComputeVelocity();
     }
 
-    protected virtual void ComputeVelocity()
-    {
-
-    }
+    protected virtual void ComputeVelocity() { }
 
     void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity += gravityModifier * Time.deltaTime * Physics2D.gravity;
         velocity.x = targetVelocity.x;
 
         grounded = false;
-
         Vector2 deltaPosition = velocity * Time.deltaTime;
-
         Vector2 moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
-
         Vector2 move = moveAlongGround * deltaPosition.x;
-
         Movement(move, false);
-
         move = Vector2.up * deltaPosition.y;
 
         Movement(move, true);
@@ -98,17 +93,14 @@ public class PhysicsObject : MonoBehaviour
                 float projection = Vector2.Dot(velocity, currentNormal);
                 if (projection < 0)
                 {
-                    velocity = velocity - projection * currentNormal;
+                    velocity -= projection * currentNormal;
                 }
 
                 float modifiedDistance = hitBufferList[i].distance - shellRadius;
                 distance = modifiedDistance < distance ? modifiedDistance : distance;
             }
-
-
         }
 
-        rb2d.position = rb2d.position + move.normalized * distance;
+        rb2d.position += move.normalized * distance;
     }
-
 }

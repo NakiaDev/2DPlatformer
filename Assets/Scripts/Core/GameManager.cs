@@ -6,11 +6,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI coinsText;
-    public Image healthBar;
-    public Image inventoryItemImage;
-    public Sprite inventoryItemBlank;
-    public Animator uiAnimator;
+    AudioSource _audioSource; //A primary audioSource a large portion of game sounds are passed through
+    [SerializeField] HUD _hud; //A reference to the HUD holding your health UI, coins, dialogue, etc.
+    Dictionary<string, Sprite> _inventory = new Dictionary<string, Sprite>();
+    [SerializeField] AudioTrigger _gameMusic;
+    [SerializeField] AudioTrigger _gameAmbience;
+
+    // Properties
+    public Dictionary<string, Sprite> Inventory { get { return _inventory; } }
+    public HUD Hud { get { return _hud; } }
+    public AudioSource AudioSource { get { return _audioSource; } }
+    public AudioTrigger GameMusic { get { return _gameMusic; } }
 
     private static GameManager instance;
     public static GameManager Instance
@@ -24,13 +30,29 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameObject.Find("Original Game Manager")) Destroy(gameObject);
+        _audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    // Use this for initialization
+    public void GetInventoryItem(string name, Sprite image)
     {
-        DontDestroyOnLoad(gameObject);
-        gameObject.name = "Original Game Manager";
+        _inventory.Add(name, image);
+
+        if (image != null)
+        {
+            _hud.SetInventoryImage(_inventory[name]);
+        }
+    }
+
+    public void RemoveInventoryItem(string name)
+    {
+        _inventory.Remove(name);
+        _hud.SetInventoryImage(_hud.BlankUI);
+    }
+
+    public void ClearInventory()
+    {
+        _inventory.Clear();
+        _hud.SetInventoryImage(_hud.BlankUI);
     }
 }

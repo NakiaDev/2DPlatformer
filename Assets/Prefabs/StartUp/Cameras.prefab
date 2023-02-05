@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7429659144016634605}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.26, y: -1.0952992, z: -10}
+  m_LocalPosition: {x: -33.829712, y: 2.98774, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96,7 +96,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 20
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 7.75
   m_Depth: -1
   m_CullingMask:
@@ -195,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7429659144406564216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.26, y: -1.0952992, z: -10}
+  m_LocalPosition: {x: -38.929, y: 2.7160006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BoundingShape2D: {fileID: 2089034287945585613}
-  m_Damping: 0.5
+  m_Damping: 0
   m_MaxWindowSize: -1
 --- !u!114 &2574267414634331413
 MonoBehaviour:
@@ -268,10 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a4beb26ddd2f54bba6286038bbff81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraWorldSize: {x: 0, y: 0, z: 0}
+  cameraWorldSize: {x: 27.55, y: 15.5, z: 1}
   cinemachineFramingTransposer: {fileID: 0}
-  screenYDefault: 0
-  screenYTalking: 0
+  screenYDefault: 0.5
+  screenYTalking: 0.8
 --- !u!1 &7429659145235522347
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 1
-  m_FrequencyGain: 0.00000001754906
+  m_FrequencyGain: 1e-45
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &7792230497964615656
 GameObject:
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 7496227736745951490}
   - component: {fileID: 2089034287945585613}
   m_Layer: 2
-  m_Name: Polygon Camera Confiner
+  m_Name: CameraBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

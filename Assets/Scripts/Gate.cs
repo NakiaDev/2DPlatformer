@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    [SerializeField] Collectable.InventoryItemName requiredKeyName;
-    Animator animator;
+    [SerializeField] Collectable.ItemType requiredKeyName;
+    Animator _animator;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (NewPlayer.Instance != null && collision.gameObject == NewPlayer.Instance.gameObject)
         {
-            if (NewPlayer.Instance.inventory.ContainsKey(requiredKeyName.ToString()))
+            if (GameManager.Instance.Inventory.ContainsKey(requiredKeyName.ToString()))
             {
-                NewPlayer.Instance.RemoveInventoryItem(requiredKeyName.ToString());
-                animator.SetBool("opened", true);
+                GameManager.Instance.RemoveInventoryItem(requiredKeyName.ToString());
+                _animator.SetBool("opened", true);
             }
         }
     }
